@@ -12,7 +12,7 @@
   </parent>
 
   <groupId>pl.pentacomp</groupId>
-  <artifactId>cmbus-cmpgn-poll</artifactId>
+  <artifactId>cmbus-dispatcher</artifactId>
   <packaging>jar</packaging>
 
   <version>0.0.1-SNAPSHOT</version>

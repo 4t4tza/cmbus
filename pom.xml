@@ -16,7 +16,7 @@
   <modules>
     <module>cmbus-commons</module>
     <module>cmbus-mm7</module>
-    <module>cmbus-cmpgn-poll</module>
+    <module>cmbus-dispatcher</module>
   </modules>
 
   <pluginRepositories>

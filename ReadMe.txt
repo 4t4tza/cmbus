@@ -1,2 +1,0 @@
-Szyna Czordiant MMSC
-====================
