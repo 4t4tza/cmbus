@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>pl.pentacomp</groupId>
+    <artifactId>cmbus</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+
+  <groupId>pl.pentacomp</groupId>
+  <artifactId>cmbus-commons</artifactId>
+  <packaging>jar</packaging>
+
+  <version>0.0.1-SNAPSHOT</version>
+  <name>5COMP :: ${project.artifactId}</name>
+
+  <url>http://www.pentacomp.pl</url>
+
+  <dependencies>
+
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.camel</groupId>
+      <artifactId>camel-core</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.camel</groupId>
+      <artifactId>camel-test</artifactId>
+    </dependency>
+
+  </dependencies>
+
+  <build>
+
+    <defaultGoal>install</defaultGoal>
+
+    <plugins>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+                  <version>${compiler.plugin.version}</version>
+      </plugin>
+
+    </plugins>
+
+  </build>
+
+</project>

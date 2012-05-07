@@ -1,0 +1,634 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://www.3gpp.org/ftp/Specs/archive/23_series/23.140/schema/REL-6-MM7-1-4"
+           xmlns:tns="http://www.3gpp.org/ftp/Specs/archive/23_series/23.140/schema/REL-6-MM7-1-4" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
+           elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:import namespace="http://schemas.xmlsoap.org/soap/envelope/"
+             schemaLocation="http://schemas.xmlsoap.org/soap/envelope/"/>
+	<xs:element name="TransactionID">
+		<xs:annotation>
+			<xs:documentation>The transaction ID that shall be included in the SOAP Header</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:string">
+					<xs:attribute ref="soap:mustUnderstand"/>
+					<xs:attribute ref="soap:encodingStyle"/>
+					<xs:attribute ref="soap:actor"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="SubmitReq" type="tns:submitReqType">
+		<xs:annotation>
+			<xs:documentation>VASP to MMS : Sending MM from the VASP to one or more recipients</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="SubmitRsp" type="tns:submitRspType">
+		<xs:annotation>
+			<xs:documentation>MMS  to VASP: Response to a VASP after MM submission request</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="DeliverReq" type="tns:deliverReqType">
+		<xs:annotation>
+			<xs:documentation>MMS to VASP : Delivery of MM from the MMS Relay/Server to the VASP </xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="DeliverRsp" type="tns:deliverRspType">
+		<xs:annotation>
+			<xs:documentation>VASP to MMS : Response to a message delivered to the VASP from the MMS Relay/Server</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="CancelReq" type="tns:cancelReqType">
+		<xs:annotation>
+			<xs:documentation>VASP  to MMS: Request to cancel a message submission </xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="CancelRsp" type="tns:genericResponseType">
+		<xs:annotation>
+			<xs:documentation>MMS  to VASP: Response to a VASP after MM cancellation request </xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="ReplaceReq" type="tns:replaceReqType">
+		<xs:annotation>
+			<xs:documentation>VASP  to MMS: Request to replace a message which was submitted </xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="ReplaceRsp" type="tns:genericResponseType">
+		<xs:annotation>
+			<xs:documentation>MMS  to VASP: Response to a VASP after MM replace request </xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="extendedCancelReq" type="tns:extendedcancelReqType">
+		<xs:annotation>
+			<xs:documentation>VASP  to MMS: Extended Request to cancel a message submission </xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="extendedCancelRsp" type="tns:extendedcancelRspType">
+		<xs:annotation>
+			<xs:documentation>MMS  to VASP: Response to a VASP after extended MM cancellation request </xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="extendedReplaceReq" type="tns:extendedreplaceReqType">
+		<xs:annotation>
+			<xs:documentation>VASP  to MMS: extended Request to replace a message which was submitted </xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="extendedReplaceRsp"  type="tns:extendedreplaceRspType">
+		<xs:annotation>
+			<xs:documentation>MMS  to VASP: Response to a VASP after extended MM cancellation request </xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="DeliveryReportReq" type="tns:deliveryReportReqType">
+		<xs:annotation>
+			<xs:documentation>MMS to VASP : Delivery Report from one of the MM recipients</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="DeliveryReportRsp" type="tns:genericResponseType">
+		<xs:annotation>
+			<xs:documentation>VASP to MMS: Response to a delivery report delivered to the VASP</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="ReadReplyReq" type="tns:readReplyReqType">
+		<xs:annotation>
+			<xs:documentation>MMS to VASP : Delivery Report from one of the MM recipients</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="ReadReplyRsp" type="tns:genericResponseType">
+		<xs:annotation>
+			<xs:documentation>VASP to MMS: Response to a read reply delivered to the VASP</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="RSErrorRsp" type="tns:genericResponseType">
+		<xs:annotation>
+			<xs:documentation>MMS to VASP: Error response to a any bad request sent to the MMS Relay/Server</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="VASPErrorRsp" type="tns:genericResponseType">
+		<xs:annotation>
+			<xs:documentation>VASP to MMS: Error response to a any bad request sent to the VASP</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="senderIDType">
+		<xs:sequence>
+			<xs:element name="VASPID" type="tns:entityIDType" minOccurs="0"/>
+			<xs:element name="VASID" type="tns:entityIDType" minOccurs="0"/>
+			<xs:element name="SenderAddress" type="tns:addressType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="submitReqType">
+		<xs:complexContent>
+			<xs:extension base="tns:genericVASPRequestType">
+				<xs:sequence>
+					<xs:element name="Recipients" type="tns:recipientsType"/>
+					<xs:element name="ServiceCode" type="tns:serviceCodeType" minOccurs="0"/>
+					<xs:element name="LinkedID" type="tns:messageIDType" minOccurs="0"/>
+					<xs:element name="MessageClass" type="tns:messageClassType" default="Informational" minOccurs="0"/>
+					<xs:element name="TimeStamp" type="xs:dateTime" minOccurs="0"/>
+					<xs:element name="ReplyCharging" minOccurs="0">
+						<xs:complexType>
+							<xs:attribute name="replyChargingSize" type="xs:positiveInteger" use="optional"/>
+							<xs:attribute name="replyDeadline" type="tns:relativeOrAbsoluteDateType" use="optional"/>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="EarliestDeliveryTime" type="tns:relativeOrAbsoluteDateType" minOccurs="0"/>
+					<xs:element name="ExpiryDate" type="tns:relativeOrAbsoluteDateType" minOccurs="0"/>
+					<xs:element name="DeliveryReport" type="xs:boolean" minOccurs="0"/>
+					<xs:element name="ReadReply" type="xs:boolean" minOccurs="0"/>
+					<xs:element name="Priority" type="tns:priorityType" minOccurs="0"/>
+					<xs:element name="Subject" type="xs:string" minOccurs="0"/>
+					<xs:element name="ChargedParty" type="tns:chargedPartyType" minOccurs="0"/>
+					<xs:element name="ChargedPartyID" type="tns:chargedPartyIDType" minOccurs="0"/>
+					<xs:element name="DistributionIndicator" type="xs:boolean" minOccurs="0"/>
+					<xs:element name="DeliveryCondition" type="tns:deliveryConditionType" minOccurs="0"/>
+					<xs:element name="ApplicID" type="xs:string" minOccurs="0"/>
+					<xs:element name="ReplyApplicID" type="xs:string" minOccurs="0"/>
+					<xs:element name="AuxApplicInfo" type="xs:string" minOccurs="0"/>
+					<xs:element name="ContentClass" type="tns:contentClassType" minOccurs="0"/>
+					<xs:element name="DRMContent" type="xs:boolean" minOccurs="0"/>
+					<xs:element name="Content" type="tns:contentReferenceType" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="submitRspType">
+		<xs:complexContent>
+			<xs:extension base="tns:genericResponseType">
+				<xs:sequence>
+					<xs:element name="MessageID" type="tns:messageIDType"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="deliverReqType">
+		<xs:complexContent>
+			<xs:extension base="tns:genericRSReqType">
+				<xs:sequence>
+					<xs:element name="VASPID" type="tns:entityIDType" minOccurs="0"/>
+					<xs:element name="VASID" type="tns:entityIDType" minOccurs="0"/>
+					<xs:element name="LinkedID" type="tns:messageIDType" minOccurs="0"/>
+					<xs:element name="Sender" type="tns:addressType"/>
+					<xs:element name="Recipients" type="tns:recipientsType" minOccurs="0"/>
+					<xs:element name="Previouslysentby" type="tns:previouslySentByType" minOccurs="0"/>
+					<xs:element name="Previouslysentdateandtime" type="tns:previouslySentByDateTime" minOccurs="0"/>
+					<xs:element name="SenderSPI" type="tns:serviceProviderIDType" minOccurs="0"/>
+					<xs:element name="RecipientSPI" type="tns:serviceProviderIDType" minOccurs="0"/>
+					<xs:element name="TimeStamp" type="xs:dateTime" minOccurs="0"/>
+					<xs:element name="ReplyChargingID" type="tns:messageIDType" minOccurs="0"/>
+					<xs:element name="Priority" type="tns:priorityType" minOccurs="0"/>
+					<xs:element name="Subject" type="xs:string" minOccurs="0"/>
+					<xs:element name="ApplicID" type="xs:string" minOccurs="0"/>
+					<xs:element name="ReplyApplicID" type="xs:string" minOccurs="0"/>
+					<xs:element name="AuxApplicInfo" type="xs:string" minOccurs="0"/>
+					<xs:element name="UACapabilities" type="tns:capabilitiesType" minOccurs="0"/>
+					<xs:element name="Content" type="tns:contentReferenceType" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="deliverRspType">
+		<xs:complexContent>
+			<xs:extension base="tns:genericResponseType">
+				<xs:sequence>
+					<xs:element name="ServiceCode" type="tns:serviceCodeType" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="cancelReqType">
+		<xs:complexContent>
+			<xs:extension base="tns:genericVASPRequestType">
+				<xs:sequence>
+					<xs:element name="MessageID" type="tns:messageIDType"/>
+					<xs:element name="ApplicID" type="xs:string" minOccurs="0"/>
+					<xs:element name="ReplyApplicID" type="xs:string" minOccurs="0"/>
+					<xs:element name="AuxApplicInfo" type="xs:string" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="extendedcancelReqType">
+		<xs:complexContent>
+			<xs:extension base="tns:genericVASPRequestType">
+				<xs:sequence>
+					<xs:element name="CancelID" type="tns:messageIDType"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="extendedcancelRspType">
+		<xs:annotation>
+			<xs:documentation>Extended Cancel Response</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="MM7Version" type="tns:versionType"/>
+			<xs:element name="Status" type="tns:extendedcancelresponseStatusType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="replaceReqType">
+		<xs:complexContent>
+			<xs:extension base="tns:genericVASPRequestType">
+				<xs:sequence>
+					<xs:element name="MessageID" type="tns:messageIDType"/>
+					<xs:element name="ServiceCode" type="tns:serviceCodeType" minOccurs="0"/>
+					<xs:element name="TimeStamp" type="xs:dateTime" minOccurs="0"/>
+					<xs:element name="ReadReply" type="xs:boolean" minOccurs="0"/>
+					<xs:element name="EarliestDeliveryTime" type="tns:relativeOrAbsoluteDateType" minOccurs="0"/>
+					<xs:element name="DistributionIndicator" type="xs:boolean" minOccurs="0"/>
+					<xs:element name="ContentClass" type="tns:contentClassType" minOccurs="0"/>
+					<xs:element name="DRMContent" type="xs:boolean" minOccurs="0"/>
+					<xs:element name="ApplicID" type="xs:string" minOccurs="0"/>
+					<xs:element name="ReplyApplicID" type="xs:string" minOccurs="0"/>
+					<xs:element name="AuxApplicInfo" type="xs:string" minOccurs="0"/>
+					<xs:element name="Content" type="tns:contentReferenceType" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="extendedreplaceReqType">
+		<xs:sequence>
+			<xs:element name="MM7Version" type="tns:versionType"/>
+			<xs:element name="VASPID" type="tns:entityIDType" minOccurs="0"/>
+			<xs:element name="VASID" type="tns:entityIDType" minOccurs="0"/>
+			<xs:element name="ServiceCode" type="tns:serviceCodeType" minOccurs="0"/>
+			<xs:element name="ReplaceID" type="tns:messageIDType" minOccurs="0"/>
+			<xs:element name="TimeStamp" type="xs:dateTime" minOccurs="0"/>
+			<xs:element name="EarliestDeliveryTime" type="tns:relativeOrAbsoluteDateType" minOccurs="0"/>
+			<xs:element name="ExpiryDate" type="tns:relativeOrAbsoluteDateType" minOccurs="0"/>
+			<xs:element name="ReadReply" type="xs:boolean" minOccurs="0"/>
+			<xs:element name="DeliveryReport" type="xs:boolean" minOccurs="0"/>
+			<xs:element name="Content" type="tns:contentReferenceType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="extendedreplaceRspType">
+		<xs:annotation>
+			<xs:documentation>Extended Replace Response</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="MM7Version" type="tns:versionType"/>
+			<xs:element name="MessageID" type="tns:messageIDType"/>
+			<xs:element name="Status" type="tns:extendedcancelresponseStatusType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="deliveryReportReqType">
+		<xs:complexContent>
+			<xs:extension base="tns:genericRSReqType">
+				<xs:sequence>
+					<xs:element name="MessageID" type="tns:messageIDType"/>
+					<xs:element name="Recipient" type="tns:addressType"/>
+					<xs:element name="Sender" type="tns:addressType"/>
+					<xs:element name="Date" type="xs:dateTime"/>
+					<xs:element name="MMStatus" type="tns:mmDeliveryStatusType"/>
+					<xs:element name="MMStatusExtension" type="tns:MMStatusExtensionType" minOccurs="0"/>
+					<xs:element name="StatusText" type="xs:string" minOccurs="0"/>
+					<xs:element name="ApplicID" type="xs:string" minOccurs="0"/>
+					<xs:element name="ReplyApplicID" type="xs:string" minOccurs="0"/>
+					<xs:element name="AuxApplicInfo" type="xs:string" minOccurs="0"/>
+					<xs:element name="UACapabilities" type="tns:capabilitiesType" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="readReplyReqType">
+		<xs:complexContent>
+			<xs:extension base="tns:genericRSReqType">
+				<xs:sequence>
+					<xs:element name="MessageID" type="tns:messageIDType"/>
+					<xs:element name="Recipient" type="tns:addressType"/>
+					<xs:element name="Sender" type="tns:addressType"/>
+					<xs:element name="TimeStamp" type="xs:dateTime"/>
+					<xs:element name="MMStatus" type="tns:mmReadStatusType"/>
+					<xs:element name="StatusText" type="xs:string" minOccurs="0"/>
+					<xs:element name="ApplicID" type="xs:string" minOccurs="0"/>
+					<xs:element name="ReplyApplicID" type="xs:string" minOccurs="0"/>
+					<xs:element name="AuxApplicInfo" type="xs:string" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="genericRSReqType">
+		<xs:annotation>
+			<xs:documentation>base for all request messages from R/S to VASP</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="MM7Version" type="tns:versionType"/>
+			<xs:element name="MMSRelayServerID" type="tns:entityIDType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="genericVASPRequestType">
+		<xs:annotation>
+			<xs:documentation>Base type for all requests from VASP to R/S</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="MM7Version" type="tns:versionType"/>
+			<xs:element name="SenderIdentification" type="tns:senderIDType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="genericResponseType">
+		<xs:annotation>
+			<xs:documentation>Any simple response sent </xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="MM7Version" type="tns:versionType"/>
+			<xs:element name="Status" type="tns:responseStatusType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="responseStatusType">
+		<xs:annotation>
+			<xs:documentation>Status information conveyed in responses</xs:documentation>
+		</xs:annotation>
+		<xs:all>
+			<xs:element name="StatusCode">
+				<xs:simpleType>
+					<xs:restriction base="tns:statusCodeType"/>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="StatusText" type="tns:statusTextType"/>
+			<xs:element name="Details" type="tns:anyDataType" minOccurs="0"/>
+		</xs:all>
+	</xs:complexType>
+	<xs:complexType name="extendedcancelresponseStatusType">
+		<xs:annotation>
+			<xs:documentation>Status information conveyed in responses</xs:documentation>
+		</xs:annotation>
+		<xs:all>
+			<xs:element name="StatusCode">
+				<xs:simpleType>
+					<xs:restriction base="tns:statusCodeType"/>
+				</xs:simpleType>
+			</xs:element>
+		</xs:all>
+	</xs:complexType>
+	<xs:simpleType name="mmDeliveryStatusType">
+		<xs:annotation>
+			<xs:documentation>Statuses for MM7_delivery_report</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Expired"/>
+			<xs:enumeration value="Retrieved"/>
+			<xs:enumeration value="Rejected"/>
+			<xs:enumeration value="Indeterminate"/>
+			<xs:enumeration value="Forwarded"/>
+			<xs:enumeration value="Unrecognised"/>
+			<xs:enumeration value="Deferred"/>
+			<xs:enumeration value="DeliveryConditionNotMet"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="mmReadStatusType">
+		<xs:annotation>
+			<xs:documentation>Statuses for MM7_read_reply</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Indeterminate"/>
+			<xs:enumeration value="Read"/>
+			<xs:enumeration value="Deleted"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="messageIDType">
+		<xs:annotation>
+			<xs:documentation>Message ID</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:group name="AddressGroup">
+		<xs:choice>
+			<xs:element name="RFC2822Address">
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="xs:string">
+							<xs:attribute name="displayOnly" type="xs:boolean" use="optional" default="false"/>
+							<xs:attributeGroup ref="tns:addressSecurity"/>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Number">
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="xs:string">
+							<xs:attribute name="displayOnly" type="xs:boolean" use="optional" default="false"/>
+							<xs:attributeGroup ref="tns:addressSecurity"/>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ShortCode">
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="xs:string">
+							<xs:attribute name="displayOnly" type="xs:boolean" use="optional" default="false"/>
+							<xs:attributeGroup ref="tns:addressSecurity"/>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+		</xs:choice>
+	</xs:group>
+	<xs:complexType name="multiAddressType">
+		<xs:sequence maxOccurs="unbounded">
+			<xs:group ref="tns:AddressGroup"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="addressType">
+		<xs:group ref="tns:AddressGroup"/>
+	</xs:complexType>
+	<xs:attributeGroup name="addressSecurity">
+		<xs:attribute name="addressCoding" type="tns:addressCodingType" use="optional"/>
+		<xs:attribute name="id" type="xs:ID" use="optional"/>
+	</xs:attributeGroup>
+	<xs:simpleType name="addressCodingType">
+		<xs:annotation>
+			<xs:documentation>obfuscated or encrypted address type</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="encrypted"/>
+			<xs:enumeration value="obfuscated"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="previouslySentByType">
+		<xs:sequence>
+			<xs:element name="UserAgent" type="tns:userAgentInfoType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="previouslySentByDateTime">
+		<xs:sequence>
+			<xs:element name="DateTime" type="tns:userAgentDateTimeType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="userAgentInfoType">
+		<xs:complexContent>
+			<xs:extension base="tns:addressType">
+				<xs:attribute name="sequence" type="xs:positiveInteger" use="optional"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="userAgentDateTimeType">
+		<xs:simpleContent>
+			<xs:extension base="tns:relativeOrAbsoluteDateType">
+				<xs:attribute name="sequence" type="xs:positiveInteger" use="optional"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:simpleType name="serviceProviderIDType">
+		<xs:annotation>
+			<xs:documentation>Service Provider Identification</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="chargedPartyIDType">
+		<xs:annotation>
+			<xs:documentation>The address of the third party which is expected to pay for the MM</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="MMStatusExtensionType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="RejectionByMMSRecipient"/>
+			<xs:enumeration value="RejectionByOtherRS"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="serviceCodeType">
+		<xs:annotation>
+			<xs:documentation>Used to identify the specific service given for billing purposes</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:anyAttribute namespace="##other" processContents="lax"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:simpleType name="entityIDType">
+		<xs:annotation>
+			<xs:documentation>String used to identify the VAS, VASP and MMSC</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:complexType name="recipientsType">
+		<xs:annotation>
+			<xs:documentation>At least one of To,CC,Bcc</xs:documentation>
+		</xs:annotation>
+		<xs:sequence maxOccurs="unbounded">
+			<xs:choice>
+				<xs:element name="To" type="tns:multiAddressType"/>
+				<xs:element name="Cc" type="tns:multiAddressType"/>
+				<xs:element name="Bcc" type="tns:multiAddressType"/>
+			</xs:choice>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="messageClassType">
+		<xs:annotation>
+			<xs:documentation>Message class</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Personal"/>
+			<xs:enumeration value="Informational"/>
+			<xs:enumeration value="Advertisement"/>
+			<xs:enumeration value="Auto"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="priorityType">
+		<xs:annotation>
+			<xs:documentation>Priority of MM</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Normal"/>
+			<xs:enumeration value="High"/>
+			<xs:enumeration value="Low"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="relativeOrAbsoluteDateType">
+		<xs:annotation>
+			<xs:documentation>Date which can be relative or absolute</xs:documentation>
+		</xs:annotation>
+		<xs:union memberTypes="xs:dateTime xs:duration"/>
+	</xs:simpleType>
+	<xs:complexType name="deliveryConditionType">
+		<xs:annotation>
+			<xs:documentation>DeliveryConditions provided in MM7SubmitReq, that all need to be respected for the MM to be delivered </xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="DC" type="xs:positiveInteger" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="chargedPartyType">
+		<xs:annotation>
+			<xs:documentation>Allows specification of which party - Sender or Reciever pays for transmission</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Sender"/>
+			<xs:enumeration value="Recipient"/>
+			<xs:enumeration value="Both"/>
+			<xs:enumeration value="Neither"/>
+			<xs:enumeration value="ThirdParty"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="contentClassType">
+		<xs:annotation>
+			<xs:documentation>Content Class Type used in MM7_Submit and MM7_Replace</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="text"/>
+			<xs:enumeration value="image-basic"/>
+			<xs:enumeration value="image-rich"/>
+			<xs:enumeration value="video-basic"/>
+			<xs:enumeration value="video-rich"/>
+			<xs:enumeration value="megapixel"/>
+			<xs:enumeration value="content-basic"/>
+			<xs:enumeration value="content-rich"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="versionType">
+		<xs:annotation>
+			<xs:documentation>Version number in the format of x.y.z </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="6.8.0"/>
+			<xs:enumeration value="6.6.0"/>
+			<xs:enumeration value="6.5.0"/>
+			<xs:enumeration value="6.4.0"/>
+			<xs:enumeration value="6.3.0"/>
+			<xs:enumeration value="5.10.0"/>
+			<xs:enumeration value="5.8.0"/>
+			<xs:enumeration value="5.6.0"/>
+			<xs:enumeration value="5.5.0"/>
+			<xs:enumeration value="5.3.0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="statusCodeType">
+		<xs:annotation>
+			<xs:documentation>request status resonse codes in RES </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:positiveInteger"/>
+	</xs:simpleType>
+	<xs:complexType name="contentReferenceType">
+		<xs:annotation>
+			<xs:documentation>content element including only href</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="href" type="xs:anyURI" use="required"/>
+		<xs:attribute name="allowAdaptations" type="xs:boolean" use="optional" default="true"/>
+	</xs:complexType>
+	<xs:complexType name="capabilitiesType">
+		<xs:annotation>
+			<xs:documentation>Base attributes for transfering user agent capabilities from R/S to VASP, UAProf is e.g UserAgent Name, or URL to the UAProfile RDF. The TimeStamp is used to convey the last known update by the MMS R/S to the UACapabilities</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="UAProf" type="xs:string" use="optional"/>
+		<xs:attribute name="TimeStamp" type="tns:relativeOrAbsoluteDateType" use="optional"/>
+	</xs:complexType>
+	<xs:complexType name="anyDataType">
+		<xs:annotation>
+			<xs:documentation>Any element and attribute </xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:restriction base="xs:anyType">
+				<xs:sequence>
+					<xs:any processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:simpleType name="statusTextType">
+		<xs:annotation>
+			<xs:documentation>list of standard human-readable status descriptions</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+</xs:schema>

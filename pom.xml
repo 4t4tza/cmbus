@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>pl.pentacomp</groupId>
+  <artifactId>cmbus</artifactId>
+  <packaging>pom</packaging>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>5COMP :: ${project.artifactId}</name>
+
+  <url>http://www.pentacomp.pl</url>
+
+  <modules>
+    <module>cmbus-commons</module>
+    <module>cmbus-mm7</module>
+    <module>cmbus-cmpgn-poll</module>
+  </modules>
+
+  <pluginRepositories>
+
+    <pluginRepository>
+      <releases>
+        <enabled>false</enabled>
+      </releases>
+      <snapshots/>
+      <id>Apache Snapshot Repository</id>
+      <url>http://repository.apache.org/snapshots</url>
+    </pluginRepository>
+
+  </pluginRepositories>
+
+  <properties>
+    <slf4j.version>1.6.4</slf4j.version>
+    <logback.version>1.0.2</logback.version>
+    <groovy.version>1.8.5</groovy.version>
+    <camel.version>2.8.0</camel.version>
+    <cxf.version>2.4.1</cxf.version>
+    <jaxb2.version>2.2.5.1</jaxb2.version>
+    <source.level>1.7</source.level>
+    <output.level>1.7</output.level>
+    <compiler.plugin.version>2.3.2</compiler.plugin.version>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <jaxb-fluent-api.version>3.0</jaxb-fluent-api.version>
+    <jaxb2-basics.version>0.6.0</jaxb2-basics.version>
+    <jaxb2-plugin.version>0.7.5</jaxb2-plugin.version>
+  </properties>
+
+  <dependencyManagement>
+
+    <dependencies>
+
+      <dependency>
+        <groupId>org.apache.camel</groupId>
+        <artifactId>camel-core</artifactId>
+        <version>${camel.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.apache.camel</groupId>
+        <artifactId>camel-jaxb</artifactId>
+        <version>${camel.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.apache.camel</groupId>
+        <artifactId>camel-jackson</artifactId>
+        <version>${camel.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.apache.camel</groupId>
+        <artifactId>camel-spring</artifactId>
+        <version>${camel.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.apache.camel</groupId>
+        <artifactId>camel-test</artifactId>
+        <version>${camel.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-api</artifactId>
+        <version>${slf4j.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.sun.xml.bind</groupId>
+        <artifactId>jaxb-impl</artifactId>
+        <version>${jaxb2.version}</version>
+      </dependency>
+
+        <dependency>
+            <groupId>com.sun.xml.bind</groupId>
+            <artifactId>jaxb-xjc</artifactId>
+            <version>${jaxb2.version}</version>
+        </dependency>
+
+      <dependency>
+        <groupId>org.apache.cxf</groupId>
+        <artifactId>cxf-bundle</artifactId>
+        <version>${cxf.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>ch.qos.logback</groupId>
+        <artifactId>logback-classic</artifactId>
+        <version>${logback.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>ch.qos.logback</groupId>
+        <artifactId>logback-core</artifactId>
+        <version>${logback.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.codehaus.groovy</groupId>
+        <artifactId>groovy-all</artifactId>
+        <version>${groovy.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.jvnet.jaxb2_commons</groupId>
+        <artifactId>jaxb2-basics-runtime</artifactId>
+        <version>${jaxb2-basics.version}</version>
+      </dependency>
+
+    </dependencies>
+
+  </dependencyManagement>
+
+  <build>
+
+    <pluginManagement>
+
+      <plugins>
+
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>${compiler.plugin.version}</version>
+          <configuration>
+            <source>${source.level}</source>
+            <target>${output.level}</target>
+          </configuration>
+        </plugin>
+
+        <plugin>
+          <groupId>org.jvnet.jaxb2.maven2</groupId>
+          <artifactId>maven-jaxb2-plugin</artifactId>
+          <version>${jaxb2-plugin.version}</version>
+        </plugin>
+
+        <plugin>
+          <groupId>org.apache.camel</groupId>
+          <artifactId>camel-maven-plugin</artifactId>
+          <version>${camel.version}</version>
+        </plugin>
+
+      </plugins>
+
+    </pluginManagement>
+
+  </build>
+
+</project>
