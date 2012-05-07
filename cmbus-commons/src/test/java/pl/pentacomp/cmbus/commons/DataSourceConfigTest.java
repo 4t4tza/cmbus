@@ -1,4 +1,4 @@
-package pl.pentacomp.cmbus.dispatcher;
+package pl.pentacomp.cmbus.commons;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
