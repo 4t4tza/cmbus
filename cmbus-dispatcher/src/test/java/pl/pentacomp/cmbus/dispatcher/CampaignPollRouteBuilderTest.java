@@ -17,8 +17,8 @@ public class CampaignPollRouteBuilderTest extends BaseCMBusTest {
   @Test
   public void testPollWithPendingCampaign() throws Exception {
 
-    testlocalEndpoint.expectedMinimumMessageCount(8);
-    testlocalEndpoint.setMinimumResultWaitTime(3000);
+    testlocalEndpoint.expectedMinimumMessageCount(2);
+    testlocalEndpoint.setMinimumResultWaitTime(500);
     assertMockEndpointsSatisfied();
   }
 
