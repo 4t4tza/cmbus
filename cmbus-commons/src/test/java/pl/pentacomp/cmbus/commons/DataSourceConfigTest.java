@@ -11,7 +11,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 @RunWith(value = SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "classpath:META-INF/spring/test-ds-context.xml")
+@ContextConfiguration(locations = "classpath:META-INF/spring/ds-context-test.xml")
 public class DataSourceConfigTest {
 
   @Autowired
