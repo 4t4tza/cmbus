@@ -24,6 +24,12 @@
 
     <dependency>
       <groupId>pl.pentacomp</groupId>
+      <artifactId>cmbus-mm7</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>pl.pentacomp</groupId>
       <artifactId>cmbus-commons</artifactId>
       <version>${project.version}</version>
     </dependency>
@@ -45,7 +51,17 @@
 
     <dependency>
       <groupId>org.apache.camel</groupId>
+      <artifactId>camel-cxf</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.camel</groupId>
       <artifactId>camel-test</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.camel</groupId>
+      <artifactId>camel-jaxb</artifactId>
     </dependency>
 
     <dependency>

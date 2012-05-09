@@ -4,7 +4,7 @@ import org.apache.camel.EndpointInject;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.component.mock.MockEndpoint;
 import org.junit.Test;
-import pl.pentacomp.cmbus.commons.BaseCMBusTest;
+import pl.pentacomp.cmbus.commons.*;
 
 public class CampaignPollRouteBuilderTest extends BaseCMBusTest {
 

@@ -3,7 +3,7 @@ package pl.pentacomp.cmbus.dispatcher.concurrent;
 import org.apache.camel.builder.RouteBuilder;
 import org.springframework.stereotype.Component;
 
-@Component
+//@Component
 public class ThreadPoolDispatcherRouteBuilder extends RouteBuilder {
 
   @Override

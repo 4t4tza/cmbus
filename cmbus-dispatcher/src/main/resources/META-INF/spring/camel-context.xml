@@ -2,20 +2,62 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:camel="http://camel.apache.org/schema/spring"
+       xmlns:cxf="http://camel.apache.org/schema/cxf"
        xsi:schemaLocation="
        http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans.xsd
        http://camel.apache.org/schema/spring
        http://camel.apache.org/schema/spring/camel-spring.xsd
+       http://camel.apache.org/schema/cxf
+       http://camel.apache.org/schema/cxf/camel-cxf.xsd
        http://www.springframework.org/schema/context
        http://www.springframework.org/schema/context/spring-context.xsd">
+
+  <import resource="classpath:META-INF/cxf/cxf.xml"/>
+  <import resource="classpath:META-INF/cxf/cxf-extension-soap.xml"/>
+  <import resource="classpath:META-INF/cxf/cxf-extension-http-jetty.xml"/>
 
   <context:annotation-config/>
 
   <context:component-scan base-package="pl.pentacomp.cmbus.dispatcher"/>
 
+  <!--<camel:camelContext id="services">-->
+    <!--<camel:route>-->
+      <!--<camel:from uri=""-->
+    <!--</camel:route>-->
+  <!--</camel:camelContext>-->
+
   <camel:camelContext id="cmbus">
     <camel:contextScan/>
   </camel:camelContext>
+
+  <bean id="cxfOutLogInterceptor" class="org.apache.cxf.interceptor.LoggingOutInterceptor"/>
+  <bean id="cxfInLogInterceptor" class="org.apache.cxf.interceptor.LoggingInInterceptor"/>
+
+  <cxf:cxfEndpoint id="mmscEndpoint" address="http://localhost:8092/mmsc-service">
+    <cxf:inInterceptors>
+      <ref bean="cxfInLogInterceptor"/>
+    </cxf:inInterceptors>
+    <cxf:inFaultInterceptors>
+      <ref bean="cxfInLogInterceptor"/>
+    </cxf:inFaultInterceptors>
+    <cxf:outInterceptors>
+      <ref bean="cxfOutLogInterceptor"/>
+    </cxf:outInterceptors>
+    <cxf:outFaultInterceptors>
+      <ref bean="cxfOutLogInterceptor"/>
+    </cxf:outFaultInterceptors>
+    <cxf:properties>
+      <entry key="dataFormat" value="PAYLOAD"/>
+    </cxf:properties>
+  </cxf:cxfEndpoint>
+
+  <!--<cxf:cxfEndpoint id="mmscServiceEndpoint"-->
+                   <!--serviceClass="pl.pentacomp.cmbus.dispatcher.MMSCService"-->
+                   <!--address="http://localhost:8092/mmscservice"-->
+                   <!--endpointName="mmsc:MMSCPort"-->
+                   <!--serviceName="mmsc:MMSCService"-->
+                   <!--xmlns:mmsc="http://www.3gpp.org/ftp/Specs/archive/23_series/23.140/schema/REL-6-MM7-1-4"/>-->
+
 
 </beans>

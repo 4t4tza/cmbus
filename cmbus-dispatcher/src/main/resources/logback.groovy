@@ -13,9 +13,10 @@ appender("STDOUT", ConsoleAppender) {
   }
 }
 
-logger("org.apache.camel",WARN, ["STDOUT"], true)
+logger("org.apache.camel",DEBUG, ["STDOUT"], true)
 logger("pl.pentacomp.cmbus.dispatcher", DEBUG, ["STDOUT"], false)
 logger("pl.pentacomp.cmbus.dispatcher.concurrent", DEBUG, ["STDOUT"], true)
+logger("pl.pentacomp.cmbus.dispatcher.CxfR", DEBUG, ["STDOUT"], true)
 logger("pl.pentacomp.cmbus.mm7", INFO, ["STDOUT"], false)
 
 root(DEBUG, ["STDOUT"])

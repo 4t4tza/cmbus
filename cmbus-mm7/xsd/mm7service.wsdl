@@ -1,0 +1,73 @@
+<wsdl:definitions
+    xmlns="http://schemas.xmlsoap.org/wsdl/"
+    targetNamespace="http://mmsc/mm7/service"
+    xmlns:tns="http://mmsc/mm7/service"
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+
+  <wsdl:import location="mm7interface.wsdl"
+               namespace="http://mmsc/mm7/service" />
+
+  <!--<wsdl:import location="REL-6-MM7-1-4.xsd" namespace="http://www.3gpp.org/ftp/Specs/archive/23_series/23.140/schema/REL-6-MM7-1-4"/>-->
+
+  <wsdl:binding name="mm7Binding" type="tns:mm7interface">
+
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="DeliverReq">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input>
+        <soap:body parts="deliverReq" use="literal" />
+      </wsdl:input>
+
+      <wsdl:output>
+        <soap:body parts="deliverRsp" use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="VASPException">
+        <soap:fault name="VASPException" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="SubmitReq">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input>
+        <soap:body parts="submitReq" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body parts="submitRsp" use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="VASPException">
+        <soap:fault name="VASPException" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="DeliverReportReq">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input>
+        <soap:body parts="deliverReportReq" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body parts="deliverReportRsp" use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="VASPException">
+        <soap:fault name="VASPException" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="ReadReplyReq">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input>
+        <soap:body parts="readReplyReq" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body parts="readReplyRsp" use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="VASPException">
+        <soap:fault name="VASPException" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+
+  <wsdl:service name="mm7service">
+    <wsdl:port name="mm7" binding="tns:mm7Binding">
+      <soap:address location="http://localhost:8092/mmsc-service" />
+    </wsdl:port>
+  </wsdl:service>
+
+</wsdl:definitions>

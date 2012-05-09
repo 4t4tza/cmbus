@@ -3,9 +3,9 @@ package pl.pentacomp.cmbus.dispatcher;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.model.dataformat.JsonLibrary;
 import org.springframework.stereotype.Component;
-import pl.pentacomp.cmbus.commons.model.CampaignDefinition;
+import pl.pentacomp.cmbus.commons.model.*;
 
-@Component
+
 public class CampaignPollRouteBuilder extends RouteBuilder {
 
   @Override
@@ -21,7 +21,7 @@ public class CampaignPollRouteBuilder extends RouteBuilder {
                 "\"smilURI\":\"mms00.smil\"}")
         )
         .to("log:pl.pentacomp.cmbus.dispatcher.preunmarshall?level=DEBUG")
-        .unmarshal().json(JsonLibrary.Jackson,CampaignDefinition.class)
+        .unmarshal().json(JsonLibrary.Jackson, CampaignDefinition.class)
         .to("log:pl.pentacomp.cmbus.dispatcher.postunmarshall?level=DEBUG")
         .to("direct:aggregator");
 

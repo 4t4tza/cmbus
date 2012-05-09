@@ -1,0 +1,72 @@
+<wsdl:definitions
+    xmlns="http://schemas.xmlsoap.org/wsdl/"
+    targetNamespace="http://mmsc/mm7/service"
+    xmlns:tns="http://mmsc/mm7/service"
+    xmlns:type="http://www.3gpp.org/ftp/Specs/archive/23_series/23.140/schema/REL-6-MM7-1-4"
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+    <xsd:schema>
+      <xsd:import
+          namespace="http://www.3gpp.org/ftp/Specs/archive/23_series/23.140/schema/REL-6-MM7-1-4"
+          schemaLocation="REL-6-MM7-1-4.xsd" />
+    </xsd:schema>
+  </wsdl:types>
+
+  <wsdl:message name="DeliverReq">
+    <wsdl:part name="deliverReq" element="type:DeliverReq" />
+  </wsdl:message>
+  <wsdl:message name="DeliverRsp">
+    <wsdl:part name="deliverRsp" element="type:DeliverRsp" />
+  </wsdl:message>
+
+  <wsdl:message name="SubmitReq">
+    <wsdl:part name="submitReq" element="type:SubmitReq" />
+  </wsdl:message>
+  <wsdl:message name="SubmitRsp">
+    <wsdl:part name="submitRsp" element="type:SubmitRsp" />
+  </wsdl:message>
+  <wsdl:message name="DeliverReportReq">
+    <wsdl:part name="deliverReportReq" element="type:DeliveryReportReq" />
+  </wsdl:message>
+  <wsdl:message name="DeliverReportRsp">
+    <wsdl:part name="deliverReportRsp" element="type:DeliveryReportRsp" />
+  </wsdl:message>
+  <wsdl:message name="ReadReplyReq">
+    <wsdl:part name="readReplyReq" element="type:ReadReplyReq" />
+  </wsdl:message>
+
+  <wsdl:message name="ReadReplyRsp">
+    <wsdl:part name="readReplyRsp" element="type:ReadReplyRsp" />
+  </wsdl:message>
+
+  <wsdl:message name="VASPException">
+    <wsdl:part name="vaspException" element="type:VASPErrorRsp" />
+  </wsdl:message>
+  <wsdl:message name="RSException">
+    <wsdl:part name="rsException" element="type:RSErrorRsp" />
+  </wsdl:message>
+
+  <wsdl:portType name="mm7interface">
+    <wsdl:operation name="DeliverReq">
+      <wsdl:input message="tns:DeliverReq" />
+      <wsdl:output message="tns:DeliverRsp" />
+      <wsdl:fault name="VASPException" message="tns:VASPException" />
+    </wsdl:operation>
+    <wsdl:operation name="SubmitReq">
+      <wsdl:input message="tns:SubmitReq" />
+      <wsdl:output message="tns:SubmitRsp" />
+      <wsdl:fault name="VASPException" message="tns:VASPException" />
+    </wsdl:operation>
+    <wsdl:operation name="DeliverReportReq">
+      <wsdl:input message="tns:DeliverReportReq" />
+      <wsdl:output message="tns:DeliverReportRsp" />
+      <wsdl:fault name="VASPException" message="tns:VASPException" />
+    </wsdl:operation>
+    <wsdl:operation name="ReadReplyReq">
+      <wsdl:input message="tns:ReadReplyReq" />
+      <wsdl:output message="tns:ReadReplyRsp" />
+      <wsdl:fault name="VASPException" message="tns:VASPException" />
+    </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>
