@@ -35,9 +35,9 @@
   <properties>
     <slf4j.version>1.6.4</slf4j.version>
     <logback.version>1.0.2</logback.version>
-    <groovy.version>1.8.5</groovy.version>
+    <groovy.version>1.8.6</groovy.version>
     <camel.version>2.9.2</camel.version>
-    <cxf.version>2.5.1</cxf.version>
+    <cxf.version>2.5.2</cxf.version>
     <jaxb2.version>2.2.5.1</jaxb2.version>
     <source.level>1.7</source.level>
     <output.level>1.7</output.level>
@@ -72,6 +72,7 @@
         <artifactId>camel-jackson</artifactId>
         <version>${camel.version}</version>
       </dependency>
+
       <dependency>
         <groupId>org.apache.camel</groupId>
         <artifactId>camel-jaxb</artifactId>
@@ -109,12 +110,6 @@
       </dependency>
 
       <dependency>
-        <groupId>org.apache.cxf</groupId>
-        <artifactId>cxf-bundle</artifactId>
-        <version>${cxf.version}</version>
-      </dependency>
-
-      <dependency>
         <groupId>ch.qos.logback</groupId>
         <artifactId>logback-classic</artifactId>
         <version>${logback.version}</version>
@@ -143,6 +138,12 @@
         <artifactId>h2</artifactId>
         <version>${h2.version}</version>
         <scope>test</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>org.apache.cxf</groupId>
+        <artifactId>cxf-rt-transports-http-jetty</artifactId>
+        <version>${cxf.version}</version>
       </dependency>
 
       <dependency>

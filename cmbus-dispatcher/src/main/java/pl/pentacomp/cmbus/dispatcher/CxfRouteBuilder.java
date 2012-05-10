@@ -56,7 +56,7 @@ public class CxfRouteBuilder extends RouteBuilder {
       sr.setRecipients(rt);
       Message msg = new DefaultMessage();
       msg.setBody(sr);
-      final File f = new File("C:/dev/scala/scala-2.9.2/doc/tools/images/scala_logo.png");
+      final File f = new File("/home/tza/dev/scala/doc/tools/images/scala_logo.png");
 
       DataHandler dh = new DataHandler(new DataSource() {
 
