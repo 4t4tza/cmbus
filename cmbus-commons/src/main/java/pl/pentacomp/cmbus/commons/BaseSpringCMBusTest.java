@@ -6,9 +6,9 @@ import java.io.InputStream;
 
 public abstract class BaseSpringCMBusTest extends CamelSpringTestSupport {
 
-  protected String getTestXml(String resourceName) {
+  protected String getTestResource(String resourceName) {
 
-    String path = getClass().getCanonicalName().replaceAll("\\.", "/") + "/" + resourceName + ".xml";
+    String path = getClass().getCanonicalName().replaceAll("\\.", "/") + "/" + resourceName;
 
     InputStream is = Thread.currentThread().getContextClassLoader().getResourceAsStream(path);
 

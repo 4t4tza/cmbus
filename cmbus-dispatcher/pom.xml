@@ -29,6 +29,11 @@
     </dependency>
 
     <dependency>
+      <groupId>xmlunit</groupId>
+      <artifactId>xmlunit</artifactId>
+    </dependency>
+
+    <dependency>
       <groupId>pl.pentacomp</groupId>
       <artifactId>cmbus-commons</artifactId>
       <version>${project.version}</version>

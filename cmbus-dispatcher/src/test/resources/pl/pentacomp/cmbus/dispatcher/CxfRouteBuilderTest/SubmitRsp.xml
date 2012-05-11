@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<SubmitRsp xmlns:ns2="http://schemas.xmlsoap.org/soap/envelope/" xmlns="http://www.3gpp.org/ftp/Specs/archive/23_series/23.140/schema/REL-6-MM7-1-4">
+  <MM7Version>6.8.0</MM7Version>
+  <Status>
+    <StatusCode>201</StatusCode>
+    <StatusText>some text</StatusText>
+  </Status>
+  <MessageID>MESSAGE-ID-XXX</MessageID>
+</SubmitRsp>

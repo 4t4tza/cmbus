@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<SubmitReq xmlns="http://www.3gpp.org/ftp/Specs/archive/23_series/23.140/schema/REL-6-MM7-1-4">
+  <MM7Version>6.8.0</MM7Version>
+  <SenderIdentification>
+    <VASPID>cmbus-dispatcher</VASPID>
+    <VASID>cmbus</VASID>
+    <SenderAddress>
+      <Number>48600312312</Number>
+    </SenderAddress>
+  </SenderIdentification>
+  <Recipients>
+    <To>
+      <Number>48600000000</Number>
+    </To>
+  </Recipients>
+</SubmitReq>
